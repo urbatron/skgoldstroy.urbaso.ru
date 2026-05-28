@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://goldstroy.ru/sitemap.xml
+Host: https://goldstroy.ru

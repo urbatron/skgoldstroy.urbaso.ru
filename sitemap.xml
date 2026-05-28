@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://goldstroy.ru/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://goldstroy.ru/about</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://goldstroy.ru/projects</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://goldstroy.ru/blog</loc><priority>0.8</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://goldstroy.ru/contacts</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://goldstroy.ru/services/kirpich</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://goldstroy.ru/services/gazobeton</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://goldstroy.ru/services/bani</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://goldstroy.ru/services/montazh</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://goldstroy.ru/services/otdelka</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://goldstroy.ru/projects/project1</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://goldstroy.ru/projects/project2</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://goldstroy.ru/blog/post1</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://goldstroy.ru/blog/post2</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://goldstroy.ru/blog/post3</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://goldstroy.ru/blog/post4</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://goldstroy.ru/blog/post5</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://goldstroy.ru/blog/post6</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://goldstroy.ru/blog/post7</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://goldstroy.ru/blog/post8</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://goldstroy.ru/blog/post9</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://goldstroy.ru/blog/post10</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+</urlset>
