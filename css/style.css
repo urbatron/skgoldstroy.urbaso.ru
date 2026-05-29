@@ -2187,3 +2187,53 @@ img { max-width: 100%; display: block; object-fit: cover; }
   .project-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .short-final-form { max-width: none; margin-left: 0; }
 }
+
+/* Homepage minimal conversion pass: centered headings, 2-field forms and lead modal */
+body.modal-open { overflow: hidden; }
+.home-hero h1 span,
+.home-hero h1 small { display: block; }
+.home-hero h1 small { margin-top: 10px; font-size: clamp(24px, 3vw, 42px); line-height: 1.15; letter-spacing: -.025em; color: rgba(255,250,241,.88); font-weight: 700; }
+.home-hero .compact-lead-card { max-width: 370px; }
+.home-hero .form-compact label { margin-bottom: 12px; }
+#services-home .section-head,
+#projects-home .section-head,
+#process-home .section-head,
+#included-home .section-head,
+#trust-home .section-head,
+#cases-home .section-head,
+#faq-home .section-head { max-width: 760px; margin-left: auto; margin-right: auto; text-align: center; }
+#services-home .section-head p:not(.eyebrow),
+#projects-home .section-head p:not(.eyebrow),
+#process-home .section-head p:not(.eyebrow),
+#included-home .section-head p:not(.eyebrow),
+#trust-home .section-head p:not(.eyebrow),
+#cases-home .section-head p:not(.eyebrow),
+#faq-home .section-head p:not(.eyebrow) { max-width: 720px; margin-left: auto; margin-right: auto; }
+.short-service-grid .service-card,
+.simplified-project-grid .project-card,
+.story-grid article { display: flex; flex-direction: column; height: 100%; }
+.short-service-grid .service-card .text-link,
+.story-grid article .text-link { margin-top: auto; }
+.simplified-project-grid .project-card img { height: 390px; }
+.project-card-body { flex: 1; min-height: 230px; }
+.project-card-body .card-actions { margin-top: auto; }
+.main-calc-form .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.case-facts { color: var(--gs-muted); font-weight: 800; }
+.mobile-sticky { grid-template-columns: repeat(2, 1fr); }
+.lead-modal { position: fixed; inset: 0; z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px; }
+.lead-modal.is-open { display: flex; }
+.lead-modal__backdrop { position: absolute; inset: 0; background: rgba(17,16,14,.74); backdrop-filter: blur(6px); }
+.lead-modal__dialog { position: relative; width: min(460px, 100%); max-height: calc(100vh - 40px); overflow: auto; background: var(--gs-card); color: var(--gs-text); border-radius: 28px; padding: 30px; box-shadow: 0 30px 100px rgba(0,0,0,.36); }
+.lead-modal__dialog h2 { margin: 0 36px 10px 0; font-size: clamp(26px, 3vw, 34px); line-height: 1.12; letter-spacing: -.03em; }
+.lead-modal__dialog p { color: var(--gs-muted); margin-top: 0; }
+.lead-modal__close { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border: 1px solid rgba(39,35,29,.12); border-radius: 50%; background: #fff; color: var(--gs-text); font-size: 26px; line-height: 1; cursor: pointer; }
+.lead-modal .lead-form { padding: 0; border-radius: 0; box-shadow: none; background: transparent; }
+.lead-modal .btn { width: 100%; }
+
+@media (max-width: 760px) {
+  .home-hero .compact-lead-card { max-width: none; }
+  .home-hero h1 small { font-size: 24px; }
+  .simplified-project-grid .project-card img { height: 250px; }
+  .main-calc-form .form-grid { grid-template-columns: 1fr; }
+  .lead-modal__dialog { padding: 24px 20px; border-radius: 22px; }
+}

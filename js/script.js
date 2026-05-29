@@ -48,12 +48,92 @@
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener('click', (event) => {
         const href = anchor.getAttribute('href');
+        if (anchor.matches('[data-modal-open]')) return;
         if (!href || href === '#') return;
         const target = document.querySelector(href);
         if (!target) return;
         event.preventDefault();
         target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
       });
+    });
+  }
+
+
+  function ensureLeadModal() {
+    let modal = document.getElementById('lead-modal');
+    if (modal) return modal;
+    modal = document.createElement('div');
+    modal.className = 'lead-modal';
+    modal.id = 'lead-modal';
+    modal.setAttribute('aria-hidden', 'true');
+    modal.innerHTML = `
+      <div class="lead-modal__backdrop" data-modal-close></div>
+      <div class="lead-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
+        <button class="lead-modal__close" type="button" data-modal-close aria-label="Закрыть окно">×</button>
+        <h2 id="lead-modal-title">Оставьте телефон — мы свяжемся с вами</h2>
+        <p>Уточним задачу, ответим на вопросы и подскажем, с чего начать расчет строительства.</p>
+        <form class="lead-form modal-form" data-form="modal_lead" action="/thank-you/" method="post">
+          <input type="text" name="company" class="hp" tabindex="-1" autocomplete="off">
+          <input type="hidden" name="page_url">
+          <input type="hidden" name="utm">
+          <input type="hidden" name="form_type" value="modal_lead">
+          <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя"></label>
+          <label>Телефон<input name="phone" inputmode="tel" autocomplete="tel" required placeholder="+7 ___ ___-__-__"></label>
+          <label class="policy"><input type="checkbox" name="policy" required> Согласен с <a href="/privacy/">политикой конфиденциальности</a></label>
+          <button class="btn btn-gold" type="submit">Оставить заявку</button>
+          <p class="form-note">Телефон обязателен. Имя можно не указывать.</p>
+        </form>
+      </div>`;
+    document.body.appendChild(modal);
+    return modal;
+  }
+
+  function initLeadModal() {
+    const modal = ensureLeadModal();
+    const dialog = modal.querySelector('.lead-modal__dialog');
+    const closeButtons = modal.querySelectorAll('[data-modal-close]');
+    let lastFocused = null;
+
+    const focusableSelector = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+    const openModal = () => {
+      lastFocused = document.activeElement;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      const firstInput = modal.querySelector('input[name="phone"]') || modal.querySelector(focusableSelector);
+      if (firstInput) firstInput.focus({ preventScroll: true });
+      reachGoal('lead_modal_open', { path: window.location.pathname });
+    };
+    const closeModal = () => {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus({ preventScroll: true });
+    };
+
+    document.querySelectorAll('[data-modal-open]').forEach((trigger) => {
+      trigger.addEventListener('click', (event) => {
+        event.preventDefault();
+        openModal();
+      });
+    });
+    closeButtons.forEach((button) => button.addEventListener('click', closeModal));
+    document.addEventListener('keydown', (event) => {
+      if (!modal.classList.contains('is-open')) return;
+      if (event.key === 'Escape') closeModal();
+      if (event.key === 'Tab' && dialog) {
+        const focusable = Array.from(dialog.querySelectorAll(focusableSelector));
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     });
   }
 
@@ -122,11 +202,14 @@
           });
           if (!response.ok) throw new Error('Network response was not ok');
           reachGoal(`form_${form.dataset.form || 'lead'}_success`, payload);
-          window.location.href = '/thank-you/';
+          if (form.closest('.lead-modal')) {
+            showFormMessage(form, 'Спасибо. Заявка отправлена, инженер свяжется с вами.', 'success');
+            form.reset();
+          } else {
+            window.location.href = '/thank-you/';
+          }
         } catch (error) {
-          reachGoal(`form_${form.dataset.form || 'lead'}_fallback`, payload);
-          showFormMessage(form, 'Заявка зафиксирована на сайте. Если ответ нужен срочно, напишите в Telegram или WhatsApp.', 'success');
-          form.reset();
+          showFormMessage(form, 'Не удалось отправить заявку автоматически. Пожалуйста, позвоните по номеру в шапке сайта.', 'error');
         } finally {
           if (button) { button.disabled = false; button.textContent = original; }
         }
@@ -156,6 +239,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     initMetrikaScaffold();
     initHeader();
+    initLeadModal();
     initSmoothScroll();
     initForms();
     initGoals();
