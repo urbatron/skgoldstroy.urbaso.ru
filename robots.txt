@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://goldstroy.ru/sitemap.xml
-Host: https://goldstroy.ru
+Sitemap: https://skgoldstroy.urbaso.ru/sitemap.xml

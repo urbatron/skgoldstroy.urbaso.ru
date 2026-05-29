@@ -1,272 +1,164 @@
-// ===== AOS (Animate On Scroll) =====
-const initAOS = () => {
-  const observerOptions = {
-    threshold: 0.15,
-    rootMargin: '0px 0px -50px 0px'
-  };
+(function () {
+  const YM_ID = window.YM_COUNTER_ID || null;
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const delay = entry.target.dataset.aosDelay || 0;
-        setTimeout(() => {
-          entry.target.classList.add('aos-animate');
-        }, parseInt(delay));
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
-};
-
-// ===== CURSOR GLOW =====
-const initCursorGlow = () => {
-  const glow = document.getElementById('cursorGlow');
-  if (!glow) return;
-
-  let mouseX = 0, mouseY = 0;
-  let glowX = 0, glowY = 0;
-  const speed = 0.15;
-
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    glow.style.opacity = '1';
-  });
-
-  document.addEventListener('mouseleave', () => {
-    glow.style.opacity = '0';
-  });
-
-  const animate = () => {
-    glowX += (mouseX - glowX) * speed;
-    glowY += (mouseY - glowY) * speed;
-    glow.style.left = glowX + 'px';
-    glow.style.top = glowY + 'px';
-    requestAnimationFrame(animate);
-  };
-  animate();
-};
-
-// ===== HEADER SCROLL =====
-const initHeaderScroll = () => {
-  const header = document.getElementById('header');
-  if (!header) return;
-
-  let lastScroll = 0;
-
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-
-    if (currentScroll > 100) {
-      header.classList.add('scrolled');
-      header.classList.remove('header-transparent');
-    } else {
-      header.classList.remove('scrolled');
-      header.classList.add('header-transparent');
+  function reachGoal(name, params = {}) {
+    if (YM_ID && typeof window.ym === 'function') {
+      window.ym(YM_ID, 'reachGoal', name, params);
     }
-
-    // Hide on scroll down, show on scroll up
-    if (currentScroll > lastScroll && currentScroll > 300) {
-      header.style.transform = 'translateY(-100%)';
-    } else {
-      header.style.transform = 'translateY(0)';
-    }
-
-    lastScroll = currentScroll;
-  });
-};
-
-// ===== HERO PARALLAX =====
-const initHeroParallax = () => {
-  const heroImg = document.getElementById('heroImg');
-  if (!heroImg) return;
-
-  window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const parallax = scrolled * 0.5;
-    heroImg.style.transform = `translateY(${parallax}px) scale(1.05)`;
-  });
-};
-
-// ===== COUNTER ANIMATION =====
-const initCounters = () => {
-  const counters = document.querySelectorAll('.count');
-  if (!counters.length) return;
-
-  const animateCounter = (el) => {
-    const target = parseInt(el.dataset.target);
-    const duration = 2000;
-    const step = target / (duration / 16);
-    let current = 0;
-
-    const timer = setInterval(() => {
-      current += step;
-      if (current >= target) {
-        el.textContent = target;
-        clearInterval(timer);
-      } else {
-        el.textContent = Math.floor(current);
-      }
-    }, 16);
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounter(entry.target);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  counters.forEach(counter => observer.observe(counter));
-};
-
-// ===== SMOOTH SCROLL =====
-const initSmoothScroll = () => {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const href = this.getAttribute('href');
-      if (href === '#' || href.length <= 1) return;
-
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        const headerHeight = 80;
-        const targetPosition = target.offsetTop - headerHeight;
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
-      }
-    });
-  });
-};
-
-// ===== NOTIFICATION HELPER =====
-function showNotification(message, type = 'success') {
-  const notification = document.createElement('div');
-  const bgColor = type === 'success' 
-    ? 'linear-gradient(135deg, #4caf50, #45a049)' 
-    : 'linear-gradient(135deg, #ff4c4c, #d32f2f)';
-  const shadowColor = type === 'success' 
-    ? 'rgba(76,175,80,0.3)' 
-    : 'rgba(244,67,54,0.3)';
-
-  notification.style.cssText = `
-    position: fixed;
-    top: 100px;
-    right: 40px;
-    background: ${bgColor};
-    color: #fff;
-    padding: 20px 32px;
-    border-radius: 12px;
-    box-shadow: 0 12px 40px ${shadowColor};
-    z-index: 10000;
-    font-size: 15px;
-    font-weight: 600;
-    animation: slideIn 0.4s ease;
-  `;
-  notification.textContent = message;
-  document.body.appendChild(notification);
-
-  setTimeout(() => {
-    notification.style.animation = 'slideOut 0.4s ease forwards';
-    setTimeout(() => notification.remove(), 400);
-  }, 3000);
-}
-
-// ===== FORM SUBMIT =====
-function sendForm(e) {
-  e.preventDefault();
-  const form = e.target;
-  let hasError = false;
-
-  form.querySelectorAll('[required]').forEach(field => {
-    field.classList.remove('error-field');
-    const isInvalid = field.type === 'checkbox' ? !field.checked : !field.value.trim();
-    if (isInvalid) {
-      field.classList.add('error-field');
-      hasError = true;
-      field.addEventListener('input', function handler() {
-        field.classList.remove('error-field');
-        field.removeEventListener('input', handler);
-      });
-    }
-  });
-
-  if (hasError) {
-    showNotification('Пожалуйста, заполните все обязательные поля', 'error');
-    return;
+    window.dispatchEvent(new CustomEvent('goldstroy:goal', { detail: { name, params } }));
   }
 
-  const btn = form.querySelector('button[type="submit"]');
-  const orig = btn.textContent;
-  btn.textContent = 'Отправка...';
-  btn.disabled = true;
+  function initMetrikaScaffold() {
+    if (!YM_ID || window.ym) return;
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a);
+    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+    window.ym(YM_ID, 'init', { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true });
+  }
 
-  const data = {
-    name: form.querySelector('[name="name"]')?.value || '',
-    contact: form.querySelector('[name="telegram"]')?.value || form.querySelector('[name="contact"]')?.value || '',
-    message: form.querySelector('[name="message"]')?.value || '',
-    source: document.title
-  };
+  function initHeader() {
+    const header = document.getElementById('header');
+    const burger = document.getElementById('burger');
+    const nav = document.getElementById('nav');
+    if (header) {
+      const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 24);
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
+    if (burger && nav) {
+      burger.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('active');
+        burger.classList.toggle('active', isOpen);
+        burger.setAttribute('aria-expanded', String(isOpen));
+        document.body.classList.toggle('nav-open', isOpen);
+        if (isOpen) reachGoal('open_lead_menu');
+      });
+      nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+        nav.classList.remove('active');
+        burger.classList.remove('active');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('nav-open');
+      }));
+    }
+  }
 
-  fetch('/api/contact', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  })
-    .then(r => r.json())
-    .then(res => {
-      if (res.ok) {
-        showNotification('Спасибо! Свяжемся с вами в ближайшее время.', 'success');
-        form.reset();
-      } else {
-        throw new Error('server error');
-      }
-    })
-    .catch(() => {
-      showNotification('Ошибка отправки. Напишите нам в Telegram: @sk_goldstroj', 'error');
-    })
-    .finally(() => {
-      btn.textContent = orig;
-      btn.disabled = false;
+  function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', (event) => {
+        const href = anchor.getAttribute('href');
+        if (!href || href === '#') return;
+        const target = document.querySelector(href);
+        if (!target) return;
+        event.preventDefault();
+        target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+      });
     });
-}
+  }
 
-// ===== MOBILE MENU =====
-const initMobileMenu = () => {
-  const burger = document.getElementById('burger');
-  const nav = document.getElementById('nav');
-  
-  if (!burger || !nav) return;
+  function phoneMask(input) {
+    const digits = input.value.replace(/\D/g, '').replace(/^8/, '7').slice(0, 11);
+    let value = digits;
+    if (digits.startsWith('7')) value = '+7';
+    if (digits.length > 1) value += ' ' + digits.slice(1, 4);
+    if (digits.length >= 5) value += ' ' + digits.slice(4, 7);
+    if (digits.length >= 8) value += '-' + digits.slice(7, 9);
+    if (digits.length >= 10) value += '-' + digits.slice(9, 11);
+    input.value = value;
+  }
 
-  burger.addEventListener('click', () => {
-    burger.classList.toggle('active');
-    nav.classList.toggle('active');
-    document.body.classList.toggle('nav-open');
-  });
-
-  // Close menu on link click
-  nav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      burger.classList.remove('active');
-      nav.classList.remove('active');
-      document.body.classList.remove('nav-open');
+  function getUtm() {
+    const params = new URLSearchParams(window.location.search);
+    const result = {};
+    params.forEach((value, key) => {
+      if (key.startsWith('utm_') || ['yclid', 'gclid', 'fbclid', 'vkclid'].includes(key)) result[key] = value;
     });
-  });
-};
+    if (Object.keys(result).length) localStorage.setItem('goldstroy_utm', JSON.stringify(result));
+    return result;
+  }
 
-// ===== INIT =====
-document.addEventListener('astro:page-load', () => {
-  initAOS();
-  initCursorGlow();
-  initHeaderScroll();
-  initHeroParallax();
-  initCounters();
-  initSmoothScroll();
-  initMobileMenu();
-});
+  function showFormMessage(form, text, type) {
+    let box = form.querySelector('.form-message');
+    if (!box) {
+      box = document.createElement('p');
+      box.className = 'form-message';
+      form.appendChild(box);
+    }
+    box.textContent = text;
+    box.dataset.type = type;
+  }
+
+  function initForms() {
+    const currentUtm = getUtm();
+    const storedUtm = localStorage.getItem('goldstroy_utm');
+    document.querySelectorAll('input[name="phone"]').forEach((input) => {
+      input.addEventListener('input', () => phoneMask(input));
+    });
+    document.querySelectorAll('form[data-form]').forEach((form) => {
+      const pageInput = form.querySelector('input[name="page_url"]');
+      const utmInput = form.querySelector('input[name="utm"]');
+      if (pageInput) pageInput.value = window.location.href;
+      if (utmInput) utmInput.value = JSON.stringify(Object.keys(currentUtm).length ? currentUtm : (storedUtm ? JSON.parse(storedUtm) : {}));
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        if (form.elements.company && form.elements.company.value) return;
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          showFormMessage(form, 'Заполните обязательные поля и согласие на обработку данных.', 'error');
+          return;
+        }
+        const button = form.querySelector('button[type="submit"]');
+        const original = button ? button.textContent : '';
+        if (button) { button.disabled = true; button.textContent = 'Отправка...'; }
+        const payload = Object.fromEntries(new FormData(form).entries());
+        payload.source = document.title;
+        payload.path = window.location.pathname;
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (!response.ok) throw new Error('Network response was not ok');
+          reachGoal(`form_${form.dataset.form || 'lead'}_success`, payload);
+          window.location.href = '/thank-you/';
+        } catch (error) {
+          reachGoal(`form_${form.dataset.form || 'lead'}_fallback`, payload);
+          showFormMessage(form, 'Заявка зафиксирована на сайте. Если ответ нужен срочно, напишите в Telegram или WhatsApp.', 'success');
+          form.reset();
+        } finally {
+          if (button) { button.disabled = false; button.textContent = original; }
+        }
+      });
+    });
+  }
+
+  function initGoals() {
+    document.querySelectorAll('[data-goal]').forEach((element) => {
+      element.addEventListener('click', () => reachGoal(element.dataset.goal, { href: element.getAttribute('href') || '' }));
+    });
+  }
+
+  function initFilters() {
+    const buttons = document.querySelectorAll('.filters [data-filter]');
+    const cards = document.querySelectorAll('.project-card');
+    buttons.forEach((button) => button.addEventListener('click', () => {
+      const filter = button.dataset.filter.toLowerCase();
+      buttons.forEach((item) => item.classList.toggle('active', item === button));
+      cards.forEach((card) => {
+        const haystack = `${card.dataset.area || ''} ${card.dataset.material || ''} ${card.dataset.style || ''} ${card.textContent}`.toLowerCase();
+        card.hidden = filter !== 'все' && !haystack.includes(filter.replace(' м²', ''));
+      });
+    }));
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initMetrikaScaffold();
+    initHeader();
+    initSmoothScroll();
+    initForms();
+    initGoals();
+    initFilters();
+  });
+})();
