@@ -71,7 +71,7 @@
       <div class="lead-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
         <button class="lead-modal__close" type="button" data-modal-close aria-label="Закрыть окно">×</button>
         <h2 id="lead-modal-title">Оставьте телефон — мы свяжемся с вами</h2>
-        <p>Уточним задачу, ответим на вопросы и подскажем, с чего начать расчет строительства.</p>
+        <p>Уточним задачу, ответим на вопросы и подскажем следующий шаг.</p>
         <form class="lead-form modal-form" data-form="modal_lead" action="/thank-you/" method="post">
           <input type="text" name="company" class="hp" tabindex="-1" autocomplete="off">
           <input type="hidden" name="page_url">
@@ -202,7 +202,7 @@
           if (!response.ok) throw new Error('Network response was not ok');
           reachGoal(`form_${form.dataset.form || 'lead'}_success`, payload);
           if (form.closest('.lead-modal')) {
-            showFormMessage(form, 'Спасибо. Заявка отправлена, инженер свяжется с вами.', 'success');
+            showFormMessage(form, 'Заявка отправлена. Мы свяжемся с вами в ближайшее время.', 'success');
             form.reset();
           } else {
             window.location.href = '/thank-you/';

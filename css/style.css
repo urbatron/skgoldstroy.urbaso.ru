@@ -1495,7 +1495,6 @@ input[type="checkbox"].error-field {
   #calcModal > div { padding: 32px 20px !important; }
 
   /* Contact buttons */
-  .split-right a[href*="t.me"],
   .split-right a[href*="tel"],
   .split-right a[href*="mailto"] { padding: 16px !important; }
 }
@@ -2236,4 +2235,69 @@ body.modal-open { overflow: hidden; }
   .simplified-project-grid .project-card img { height: 250px; }
   .main-calc-form .form-grid { grid-template-columns: 1fr; }
   .lead-modal__dialog { padding: 24px 20px; border-radius: 22px; }
+}
+
+/* Homepage refinement pass: calmer header, stronger projects, lighter mid-page sections */
+.home-header .header-content { min-height: 70px; }
+.home-header.scrolled .header-content { min-height: 62px; }
+.home-header .header-phone { font-size: 17px; letter-spacing: .01em; }
+.home-header .btn-small { min-height: 40px; }
+.home-hero { min-height: 660px; }
+.home-hero-grid { grid-template-columns: minmax(0, 1.18fr) minmax(300px, 360px); gap: clamp(28px, 4vw, 54px); }
+.home-hero .hero-proof { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 700px; }
+.home-hero .compact-lead-card { max-width: 350px; padding: 22px; }
+.home-stats { padding: 14px 0; }
+.home-stats .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.home-stats .stats-grid div { padding-block: 6px; }
+.home-stats .stats-grid span { max-width: none; }
+.short-service-grid .service-card { padding: 22px; }
+.short-service-grid .service-card img { height: 270px; margin: -22px -22px 18px; width: calc(100% + 44px); max-width: none; border-radius: 22px 22px 0 0; }
+.short-service-grid .service-card p { margin-bottom: 10px; }
+.short-service-grid .service-card li { margin: 4px 0; }
+.design-cta { display: none; }
+.simplified-project-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
+.simplified-project-grid .project-card:first-child { grid-column: span 2; }
+.simplified-project-grid .project-card:first-child img { height: 520px; }
+.simplified-project-grid .project-card img { height: 320px; }
+.project-card-body { min-height: 210px; }
+.project-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: auto; }
+.projects-cta { max-width: 920px; margin: 36px auto 0; padding: 22px 26px; border-radius: 24px; }
+.short-process-timeline { gap: 12px; }
+.short-process-timeline li { min-height: auto; padding: 22px 18px; }
+.short-process-timeline p { font-size: 13px; line-height: 1.42; }
+.included-light { background: var(--gs-warm); color: var(--gs-text); }
+.included-light .section-head h2,
+.included-light .included-home-grid h3 { color: var(--gs-text); }
+.included-light .section-head p:not(.eyebrow),
+.included-light .included-home-grid ul,
+.included-light .included-note p { color: var(--gs-muted); }
+.included-light .included-home-grid article { background: var(--gs-card); border: 1px solid rgba(39,35,29,.08); box-shadow: 0 12px 36px rgba(39,35,29,.05); }
+.included-light .included-note { max-width: 900px; margin-inline: auto; border-color: rgba(39,35,29,.08); background: rgba(255,250,241,.72); }
+.compact-proof-grid article { padding: 22px; }
+.compact-proof-grid article h3 { margin-bottom: 8px; }
+.compact-proof-grid article p { font-size: 14px; line-height: 1.45; }
+.story-grid article img { height: 300px; }
+.compact-faq details summary { font-size: 18px; }
+.final-cta { background: var(--gs-dark); }
+.site-footer .footer-grid > div:first-child p { max-width: 310px; }
+
+@media (max-width: 1180px) {
+  .home-hero .hero-proof { grid-template-columns: 1fr; }
+  .simplified-project-grid .project-card:first-child { grid-column: span 2; }
+}
+
+@media (max-width: 760px) {
+  .home-hero-grid { grid-template-columns: 1fr; }
+  .home-hero .compact-lead-card { max-width: none; }
+  .home-hero .hero-proof { grid-template-columns: 1fr; margin: 18px 0; }
+  .home-stats .stats-grid { grid-template-columns: 1fr; }
+  .home-stats .stats-grid div,
+  .home-stats .stats-grid div:last-child { grid-column: auto; border-bottom: 1px solid rgba(255,250,241,.12); }
+  .simplified-project-grid { grid-template-columns: 1fr; }
+  .simplified-project-grid .project-card:first-child { grid-column: auto; }
+  .simplified-project-grid .project-card:first-child img,
+  .simplified-project-grid .project-card img { height: 280px; }
+  .projects-cta { padding: 20px; }
+  .short-process-timeline li { padding: 20px; }
+  .included-light .included-note { display: grid; }
 }
