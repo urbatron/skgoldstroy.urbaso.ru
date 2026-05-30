@@ -102,7 +102,6 @@
       document.body.classList.add('modal-open');
       const firstInput = modal.querySelector('input[name="phone"]') || modal.querySelector(focusableSelector);
       if (firstInput) firstInput.focus({ preventScroll: true });
-      reachGoal('lead_modal_open', { path: window.location.pathname });
     };
     const closeModal = () => {
       modal.classList.remove('is-open');
@@ -219,7 +218,10 @@
 
   function initGoals() {
     document.querySelectorAll('[data-goal]').forEach((element) => {
-      element.addEventListener('click', () => reachGoal(element.dataset.goal, { href: element.getAttribute('href') || '' }));
+      element.addEventListener('click', () => {
+        if (element.matches('[data-modal-open]')) return;
+        reachGoal(element.dataset.goal, { href: element.getAttribute('href') || '' });
+      });
     });
   }
 
