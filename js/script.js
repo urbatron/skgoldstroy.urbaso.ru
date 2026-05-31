@@ -70,18 +70,16 @@
       <div class="lead-modal__backdrop" data-modal-close></div>
       <div class="lead-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
         <button class="lead-modal__close" type="button" data-modal-close aria-label="Закрыть окно">×</button>
-        <h2 id="lead-modal-title">Оставьте телефон — мы свяжемся с вами</h2>
-        <p>Уточним задачу, ответим на вопросы и подскажем следующий шаг.</p>
+        <h2 id="lead-modal-title">Обсудить проект</h2>
         <form class="lead-form modal-form" data-form="modal_lead" action="/thank-you/" method="post">
           <input type="text" name="company" class="hp" tabindex="-1" autocomplete="off">
           <input type="hidden" name="page_url">
           <input type="hidden" name="utm">
           <input type="hidden" name="form_type" value="modal_lead">
-          <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя"></label>
-          <label>Телефон<input name="phone" inputmode="tel" autocomplete="tel" required placeholder="+7 ___ ___-__-__"></label>
-          <label class="policy"><input type="checkbox" name="policy" required> Согласен с <a href="/privacy/">политикой конфиденциальности</a></label>
-          <button class="btn btn-gold" type="submit">Оставить заявку</button>
-          <p class="form-note">Телефон обязателен. Имя можно не указывать.</p>
+          <input name="name" autocomplete="name" placeholder="Имя" aria-label="Имя">
+          <input name="phone" inputmode="tel" autocomplete="tel" required placeholder="Телефон" aria-label="Телефон">
+          <button class="btn btn-gold" type="submit">Отправить заявку</button>
+          <p class="policy-note">Нажимая кнопку, вы соглашаетесь с <a href="/privacy/">политикой конфиденциальности</a>.</p>
         </form>
       </div>`;
     document.body.appendChild(modal);
