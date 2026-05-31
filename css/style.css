@@ -3010,3 +3010,63 @@ body { background: var(--gs-graphite-1); color: var(--gs-soft-white); }
   .simplified-project-grid .project-card:first-child .project-card-body { left: 18px; right: 18px; bottom: 18px; padding: 24px; }
   .included-light .included-home-grid article { padding: 24px 0 0; border-left: 0; border-top: 1px solid rgba(244,239,230,.10); }
 }
+
+/* Homepage v9 grid polish: unified axes, equal cards, mobile-safe portfolio */
+.container { width: min(1240px, calc(100% - clamp(32px, 6vw, 80px))); }
+.home-header .header-content,
+.home-header.scrolled .header-content { min-height: 58px; }
+.home-header .main-nav a { padding: 18px 0; }
+.home-header .main-nav a::after { bottom: 12px; }
+.home-hero { min-height: clamp(680px, 86vh, 760px); }
+.home-hero-grid { padding: clamp(132px, 17vh, 176px) 0 clamp(70px, 9vh, 96px); }
+.home-hero-content { max-width: 720px; }
+.home-hero h1 { line-height: 1.04; }
+.home-hero h1 small { font-size: clamp(17px, 1.4vw, 22px); }
+.home-hero .btn { padding-inline: 34px; }
+.short-service-grid .service-card,
+.simplified-project-grid .project-card,
+.compact-proof-grid article { height: 100%; }
+.short-service-grid .service-card { display: flex; flex-direction: column; }
+.short-service-grid .service-card img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.short-service-grid .service-card .text-link,
+.short-service-grid .service-card > a { margin-top: auto; align-self: flex-start; }
+.simplified-project-grid .project-card:not(.project-card-featured) { display: flex; flex-direction: column; }
+.simplified-project-grid .project-card:not(.project-card-featured) img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
+.simplified-project-grid .project-card:not(.project-card-featured) .project-card-body { flex: 1; display: flex; flex-direction: column; }
+.simplified-project-grid .project-card:not(.project-card-featured) .card-actions { margin-top: auto; }
+.home-calc-grid { align-items: start; }
+.main-calc-form { min-height: 360px; }
+.home-final-grid > div > p:not(.eyebrow) { max-width: 430px; margin-top: 22px; color: rgba(244,239,230,.62); font-size: 18px; }
+.footer-minimal { grid-template-columns: 1.1fr 1fr 1.1fr 1.35fr !important; gap: 28px; }
+.footer-minimal h2 { margin-bottom: 14px; }
+.footer-minimal a[href^="tel:"] { font-size: 18px; color: var(--gs-soft-white); }
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+input:focus-visible { outline: 2px solid var(--gs-brass-soft); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
+@media (max-width: 1023px) and (min-width: 768px) {
+  .short-service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .simplified-project-grid { grid-template-columns: 1fr; }
+  .compact-proof-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .home-hero { min-height: 640px; }
+  .home-hero-grid { padding: 112px 0 58px; }
+  .home-stats .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
+  .home-stats .stats-grid div { padding-inline: 10px; }
+  .home-stats .stats-grid strong { font-size: 27px; }
+  .home-stats .stats-grid span { font-size: 11px; }
+  .simplified-project-grid .project-card-featured,
+  .simplified-project-grid .project-card:first-child { min-height: 0; display: flex; flex-direction: column; }
+  .simplified-project-grid .project-card-featured::after,
+  .simplified-project-grid .project-card:first-child::after { display: none; }
+  .simplified-project-grid .project-card-featured img,
+  .simplified-project-grid .project-card:first-child img { height: auto; aspect-ratio: 16 / 10; }
+  .simplified-project-grid .project-card-featured .project-card-body,
+  .simplified-project-grid .project-card:first-child .project-card-body { position: static; max-width: none; padding: 24px; background: var(--gs-graphite-2); border: 0; backdrop-filter: none; }
+  .footer-minimal { grid-template-columns: 1fr !important; }
+  .mobile-sticky a:last-child { flex: 1.25; }
+}

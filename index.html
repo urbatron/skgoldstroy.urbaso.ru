@@ -8,7 +8,7 @@
   <meta name="robots" content="index, follow, max-image-preview:large">
   <link rel="canonical" href="https://skgoldstroy.urbaso.ru/">
   <link rel="icon" type="image/png" href="/images/Favikon.png">
-  <link rel="preload" as="image" href="/images/stock/hero-main.jpg">
+  <link rel="preload" as="image" href="/images/stock/hero-main.jpg" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -95,7 +95,7 @@
 </header>
 <main>
   <section class="home-hero" aria-labelledby="home-title">
-    <div class="hero-bg"><img src="/images/stock/hero-main.jpg" alt="Премиальный частный дом СК Голдстрой" width="1600" height="900"></div>
+    <div class="hero-bg"><img src="/images/stock/hero-main.jpg" alt="Премиальный частный дом СК Голдстрой" width="1600" height="900" fetchpriority="high"></div>
     <div class="container home-hero-grid">
       <div class="home-hero-content">
         <h1 id="home-title"><span>Строительство премиальных домов под ключ</span><small>Москва и Московская область</small></h1>
@@ -234,6 +234,7 @@
       <div>
         <p class="eyebrow">Консультация инженера</p>
         <h2>Планируете строительство дома?</h2>
+        <p>Обсудим проект и подскажем следующий шаг.</p>
       </div>
       <form class="lead-form final-form short-final-form" data-form="consultation" action="/thank-you/" method="post">
         <input type="text" name="company" class="hp" tabindex="-1" autocomplete="off">
@@ -269,9 +270,10 @@
   <div class="container footer-grid footer-minimal">
     <div><a href="/" class="logo">СК ГОЛД<span>СТРОЙ</span></a></div>
     <div><h2>Навигация</h2><ul><li><a href="/projects/">Проекты</a></li><li><a href="/services/">Услуги</a></li><li><a href="/stages/">Этапы</a></li><li><a href="/about/">О компании</a></li><li><a href="/contacts/">Контакты</a></li></ul></div>
+    <div><h2>Услуги</h2><ul><li><a href="/services/stroitelstvo-domov-pod-klyuch/">Дома под ключ</a></li><li><a href="/services/doma-iz-kirpicha/">Кирпичные дома</a></li><li><a href="/services/doma-iz-gazobetona/">Дома из газобетона</a></li><li><a href="/services/monolitnye-doma/">Монолитные дома</a></li></ul></div>
     <div><h2>Контакты</h2><ul><li><a href="tel:+79932489008" data-goal="phone_click">+7 993 248 90 08</a></li><li><a href="mailto:sk-goldstroj@yandex.ru">sk-goldstroj@yandex.ru</a></li><li>Москва и Московская область</li></ul></div>
   </div>
-  <div class="mobile-sticky"><a href="tel:+79932489008" data-goal="phone_click">Позвонить</a><a href="#lead-modal" data-modal-open data-goal="lead_open">Заявка</a></div>
+  <div class="mobile-sticky"><a href="tel:+79932489008" data-goal="phone_click">Позвонить</a><a href="#lead-modal" data-modal-open data-goal="lead_open">Обсудить проект</a></div>
 </footer>
 <script src="/js/script.js" defer></script>
 </body>
