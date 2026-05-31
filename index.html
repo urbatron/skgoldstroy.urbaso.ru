@@ -99,9 +99,6 @@
     <div class="container home-hero-grid">
       <div class="home-hero-content">
         <h1 id="home-title"><span>Строительство премиальных домов под ключ</span><small>Москва и Московская область</small></h1>
-        <div class="hero-actions">
-          <a href="/projects/" class="btn btn-ghost">Смотреть проекты</a>
-        </div>
       </div>
       <aside class="hero-form compact-lead-card" aria-labelledby="hero-form-title">
         <h2 id="hero-form-title">Оставьте заявку</h2>
@@ -110,10 +107,9 @@
           <input type="hidden" name="page_url">
           <input type="hidden" name="utm">
           <input type="hidden" name="form_type" value="hero_consultation">
-          <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя"></label>
-          <label>Телефон<input name="phone" inputmode="tel" autocomplete="tel" required placeholder="+7 ___ ___-__-__"></label>
+          <input name="name" autocomplete="name" aria-label="Имя" placeholder="Имя">
+          <input name="phone" inputmode="tel" autocomplete="tel" required aria-label="Телефон" placeholder="Телефон">
           <button class="btn btn-gold" type="submit">Оставить заявку</button>
-          <p class="form-note">Телефон обязателен</p>
           <p class="policy-note">Нажимая кнопку, вы соглашаетесь с <a href="/privacy/">политикой конфиденциальности</a>.</p>
         </form>
       </aside>
@@ -204,9 +200,8 @@
         <input type="hidden" name="utm">
         <input type="hidden" name="form_type" value="calc">
         <h3>Рассчитать стоимость</h3>
-        <div class="form-grid"><label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя"></label><label>Телефон<input name="phone" inputmode="tel" autocomplete="tel" required placeholder="+7 ___ ___-__-__"></label></div>
+        <div class="form-grid"><input name="name" autocomplete="name" aria-label="Имя" placeholder="Имя"><input name="phone" inputmode="tel" autocomplete="tel" required aria-label="Телефон" placeholder="Телефон"></div>
         <button class="btn btn-gold" type="submit">Рассчитать стоимость</button>
-        <p class="form-note">Телефон обязателен</p>
         <p class="policy-note">Нажимая кнопку, вы соглашаетесь с <a href="/privacy/">политикой конфиденциальности</a>.</p>
       </form>
     </div>
@@ -267,10 +262,9 @@
         <input type="hidden" name="page_url">
         <input type="hidden" name="utm">
         <input type="hidden" name="form_type" value="consultation">
-        <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя"></label>
-        <label>Телефон<input name="phone" inputmode="tel" autocomplete="tel" required placeholder="+7 ___ ___-__-__"></label>
+        <input name="name" autocomplete="name" aria-label="Имя" placeholder="Имя">
+        <input name="phone" inputmode="tel" autocomplete="tel" required aria-label="Телефон" placeholder="Телефон">
         <button class="btn btn-gold" type="submit">Оставить заявку</button>
-        <p class="form-note">Телефон обязателен</p>
         <p class="policy-note">Нажимая кнопку, вы соглашаетесь с <a href="/privacy/">политикой конфиденциальности</a>.</p>
       </form>
     </div>
@@ -280,17 +274,15 @@
   <div class="lead-modal__backdrop" data-modal-close></div>
   <div class="lead-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
     <button class="lead-modal__close" type="button" data-modal-close aria-label="Закрыть окно">×</button>
-    <h2 id="lead-modal-title">Оставьте телефон — мы свяжемся с вами</h2>
-    <p>Уточним задачу и подскажем следующий шаг.</p>
+    <h2 id="lead-modal-title">Оставьте заявку</h2>
     <form class="lead-form modal-form" data-form="modal_lead" action="/thank-you/" method="post">
       <input type="text" name="company" class="hp" tabindex="-1" autocomplete="off">
       <input type="hidden" name="page_url">
       <input type="hidden" name="utm">
       <input type="hidden" name="form_type" value="modal_lead">
-      <label>Имя<input name="name" autocomplete="name" placeholder="Ваше имя"></label>
-      <label>Телефон<input name="phone" inputmode="tel" autocomplete="tel" required placeholder="+7 ___ ___-__-__"></label>
+      <input name="name" autocomplete="name" aria-label="Имя" placeholder="Имя">
+      <input name="phone" inputmode="tel" autocomplete="tel" required aria-label="Телефон" placeholder="Телефон">
       <button class="btn btn-gold" type="submit">Оставить заявку</button>
-      <p class="form-note">Телефон обязателен</p>
       <p class="policy-note">Нажимая кнопку, вы соглашаетесь с <a href="/privacy/">политикой конфиденциальности</a>.</p>
     </form>
   </div>
