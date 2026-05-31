@@ -3850,3 +3850,47 @@ select {
   .lead-form, .hero-form, .main-calc-form, .final-cta .lead-form { padding: 24px; }
   .compact-faq summary { min-height: 58px; font-size: 16px; }
 }
+
+/* Homepage static rendering pass: no reveal/fade/scroll-triggered appearance */
+html { scroll-behavior: auto; }
+*, *::before, *::after {
+  animation: none !important;
+  animation-delay: 0s !important;
+  transition-delay: 0s !important;
+}
+[data-aos],
+[data-aos].aos-animate,
+.reveal,
+.animate,
+.fade-in,
+.slide-up,
+.hero-tag,
+.hero-title,
+.hero-desc,
+.hero-actions,
+.hero-scroll-hint,
+.service-card,
+.project-card,
+.lead-form,
+.proof-grid article,
+.faq,
+.final-cta {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
+.home-hero .hero-bg img,
+#services-home img,
+#projects-home img {
+  animation: none !important;
+  transform: none !important;
+  filter: none;
+}
+@media (max-width: 760px) {
+  .short-process-timeline {
+    border-top: 0;
+    border-left: 1px solid rgba(244,239,230,.12);
+    padding-top: 0;
+    padding-left: 18px;
+  }
+}
