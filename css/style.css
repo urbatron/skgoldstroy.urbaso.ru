@@ -4861,3 +4861,215 @@ a,
     background: linear-gradient(180deg, rgba(7,8,7,.94), rgba(7,8,7,.76)), url('/images/stock/cta-bg.jpg') center / cover no-repeat;
   }
 }
+
+/* Homepage v11 composition polish: precise visuals, forms and link language */
+.text-link,
+.policy-note a,
+.site-footer a,
+.footer-minimal a {
+  text-decoration-line: none !important;
+  text-decoration: none !important;
+  box-shadow: none;
+}
+.text-link,
+.policy-note a {
+  display: inline-flex;
+  width: fit-content;
+  border-bottom: 1px solid rgba(194,154,96,.62);
+  padding-bottom: 4px;
+  line-height: 1.2;
+}
+.text-link:hover,
+.policy-note a:hover { border-bottom-color: rgba(194,154,96,.98); }
+.footer-minimal a { border-bottom: 1px solid transparent; }
+.footer-minimal a:hover { border-bottom-color: rgba(194,154,96,.50); }
+.btn,
+.btn-gold,
+.btn-dark {
+  min-height: 54px;
+  border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: .005em;
+  white-space: nowrap;
+}
+.home-hero .btn-gold { min-width: 248px; }
+.home-hero .text-link { align-self: center; }
+.short-service-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+.short-service-grid .service-card {
+  display: grid;
+  grid-template-columns: minmax(260px, 44%) minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  min-height: 330px;
+  border-radius: 24px;
+}
+.short-service-grid .service-card img {
+  grid-row: 1 / 4;
+  width: 100%;
+  height: 100%;
+  min-height: 330px;
+  aspect-ratio: auto;
+}
+.short-service-grid .service-card h3 { padding: 34px 34px 0; font-size: 29px; }
+.short-service-grid .service-card p { padding: 0 34px; margin: 14px 0 24px; font-size: 17px; }
+.short-service-grid .service-card > a { margin: auto 34px 34px; }
+.simplified-project-grid .project-card-featured .project-card-body,
+.simplified-project-grid .project-card:first-child .project-card-body {
+  max-width: 500px;
+  padding: 24px 28px;
+  background: rgba(18,18,16,.56);
+  border-color: rgba(244,239,230,.18);
+}
+.simplified-project-grid .project-card-featured .btn,
+.simplified-project-grid .project-card:first-child .btn {
+  min-height: 50px;
+  border-radius: 11px;
+}
+.simplified-project-grid .project-card:not(.project-card-featured) img {
+  min-height: 270px;
+  aspect-ratio: 16 / 9;
+}
+.process-home-layout {
+  grid-template-columns: minmax(0, .9fr) minmax(500px, .86fr);
+  align-items: stretch;
+}
+.process-home-content,
+.process-media { min-height: 560px; }
+.process-home-content { display: flex; flex-direction: column; justify-content: center; }
+.process-media { display: grid; grid-template-rows: 1fr auto; }
+.process-media img {
+  height: 100%;
+  min-height: 470px;
+  aspect-ratio: 4 / 3;
+  object-position: center 45%;
+}
+.process-media figcaption { font-size: 16.5px; color: rgba(244,239,230,.78); }
+#included-home::before {
+  opacity: .24;
+  border-color: rgba(194,154,96,.28);
+  background-size: 48px 48px, 48px 48px, 100% 100%;
+}
+.included-light .included-home-grid article {
+  padding: 0 34px;
+  background: rgba(10,10,9,.12);
+  border-left-color: rgba(244,239,230,.12);
+}
+.included-light .included-home-grid h3 { font-size: 26px; }
+.included-light .included-home-grid li { font-size: 17.5px; }
+#calc .lead-form,
+.final-cta .lead-form,
+.modal-form {
+  background: linear-gradient(180deg, rgba(62,57,48,.98), rgba(32,30,26,.99));
+  border-color: rgba(244,239,230,.20);
+  box-shadow: 0 30px 90px rgba(0,0,0,.32), 0 0 0 1px rgba(194,154,96,.05) inset;
+}
+#calc .lead-form input,
+.final-cta .lead-form input,
+.modal-form input {
+  height: 52px;
+  min-height: 52px;
+  background: rgba(244,239,230,.075);
+  border-color: rgba(244,239,230,.16);
+  color: rgba(244,239,230,.96);
+}
+#calc .lead-form input::placeholder,
+.final-cta .lead-form input::placeholder,
+.modal-form input::placeholder { color: rgba(244,239,230,.46); }
+#calc .btn-gold,
+.final-cta .btn-gold,
+.modal-form .btn-gold {
+  min-height: 54px;
+  background: linear-gradient(135deg, #b78e55, #9f7948);
+}
+.policy-note { font-size: 10px; color: rgba(244,239,230,.24); }
+#trust-home { padding-top: 98px; padding-bottom: 104px; }
+.trust-home-layout {
+  display: grid;
+  grid-template-columns: minmax(420px, .9fr) minmax(0, 1fr);
+  gap: clamp(48px, 6vw, 88px);
+  align-items: center;
+}
+.trust-home-content .section-head { margin-bottom: 34px !important; }
+.trust-home-layout .compact-proof-grid {
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.trust-home-layout .compact-proof-grid article {
+  min-height: 148px;
+  padding: 26px 30px 26px 78px;
+  background: rgba(244,239,230,.060);
+}
+.trust-home-layout .compact-proof-grid article::before {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  margin: 0;
+}
+.trust-home-layout .compact-proof-grid article::after { left: 30px; right: 30px; }
+.trust-home-layout .compact-proof-grid article h3 { font-size: 26px; }
+.trust-home-layout .compact-proof-grid article p { font-size: 16.5px; }
+.trust-visual {
+  margin: 0;
+  height: 100%;
+  min-height: 560px;
+  border-radius: 30px;
+}
+.trust-visual img {
+  height: 100%;
+  min-height: 560px;
+  object-position: center 46%;
+}
+.compact-faq { max-width: 900px; }
+.compact-faq summary {
+  min-height: 64px;
+  color: rgba(244,239,230,.92);
+}
+.compact-faq summary::after {
+  margin-left: auto !important;
+  right: 24px;
+}
+.final-cta::before {
+  background: linear-gradient(90deg, rgba(5,6,5,.96), rgba(6,7,6,.82) 48%, rgba(6,7,6,.66)), url('/images/stock/cta-bg.jpg') center / cover no-repeat;
+  opacity: .98;
+}
+.home-final-grid {
+  align-items: center;
+  grid-template-columns: minmax(0, 1fr) minmax(440px, 520px);
+  gap: clamp(64px, 8vw, 120px);
+}
+.home-final-grid h2 { max-width: 760px; line-height: 1.02; }
+.final-cta .lead-form { justify-self: end; }
+.footer-minimal {
+  grid-template-columns: 1.05fr .9fr 1fr 1.45fr !important;
+  align-items: start;
+}
+.footer-minimal .logo { font-size: 24px; }
+.footer-minimal li,
+.footer-minimal a { font-size: 17px; line-height: 1.8; }
+.footer-minimal a[href^="tel:"] { font-size: 24px; }
+@media (max-width: 1200px) {
+  .short-service-grid .service-card { grid-template-columns: 1fr; min-height: 0; }
+  .short-service-grid .service-card img { grid-row: auto; height: auto; min-height: 260px; aspect-ratio: 16 / 9; }
+}
+@media (max-width: 1023px) {
+  .process-home-layout,
+  .trust-home-layout,
+  .home-final-grid { grid-template-columns: 1fr; }
+  .process-home-content,
+  .process-media,
+  .trust-visual,
+  .trust-visual img { min-height: 0; }
+  .process-media img { min-height: 360px; aspect-ratio: 16 / 10; }
+  .trust-visual img { height: 360px; }
+  .final-cta .lead-form { justify-self: start; }
+}
+@media (max-width: 760px) {
+  .short-service-grid { grid-template-columns: 1fr; }
+  .process-media img { min-height: 260px; aspect-ratio: 4 / 3; }
+  .trust-home-layout .compact-proof-grid article { padding: 26px; }
+  .trust-home-layout .compact-proof-grid article::before { position: static; display: block; margin-bottom: 18px; }
+  .trust-visual img { height: 260px; }
+  .home-final-grid { gap: 34px; }
+}
