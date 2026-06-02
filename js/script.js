@@ -53,7 +53,7 @@
         const target = document.querySelector(href);
         if (!target) return;
         event.preventDefault();
-        target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+        target.scrollIntoView({ behavior: 'auto', block: 'start' });
       });
     });
   }
